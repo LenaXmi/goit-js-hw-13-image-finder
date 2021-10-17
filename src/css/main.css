@@ -1,0 +1,9 @@
+.gallery{
+    display: flex;
+    
+    list-style: none;
+}
+
+.stats{
+    display: flex;
+}
