@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA,SAGI,eACJ,CAEA,gBALI,YAOJ","file":"search-engine.6969d9ea.css","sourceRoot":"../src","sourcesContent":[".gallery{\n    display: flex;\n    \n    list-style: none;\n}\n\n.stats{\n    display: flex;\n}"]}
