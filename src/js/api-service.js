@@ -1,11 +1,43 @@
 const BASE_URL = 'https://pixabay.com/api/';
+const API_KEY= 'key=23895189-b5b787f85de520230ba9fbe30'
+//  function searchImagesByKeyword(keyword) {
+//  return fetch(
+//     `${BASE_URL}?${API_KEY}&q=${keyword}&lang=en,ru&image_type=photo&orientation=horizontal&page=1&per_page=12`
+//   ).then(response => {
+//    return response.json()
+//   });
+// }
 
- function searchImagesByKeyword(keyword) {
- return fetch(
-    `${BASE_URL}?key=23895189-b5b787f85de520230ba9fbe30&q=${keyword}&lang=en,ru&image_type=photo&orientation=horizontal&page=1&per_page=12`
-  ).then(response => {
-   return response.json()
+// export default {searchImagesByKeyword}
+
+export default class ImageFinder{
+  constructor() {
+    this.searchQuery = '';
+    this.page = 1;
+  }
+  
+  fetchImages() {
+    const url = `${BASE_URL}?${API_KEY}&q=${this.searchQuery}&lang=en,ru&image_type=photo&orientation=horizontal&page=${this.page}&per_page=12`;
+    return fetch(url).then(response => {
+      this.incrementPage()
+     return response.json()
   });
-}
+  }
 
-export default {searchImagesByKeyword}
+  incrementPage() {
+    this.page += 1;
+  }
+
+  resetPage() {
+    this.page = 1;
+  }
+  
+  get query() {
+    return this.searchQuery;
+  }
+
+  set query(newQuery) {
+    this.searchQuery = newQuery;
+  }
+
+  }
