@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 import MyNotification from './notification.js';
 
 const refs = getRefs();
-const galleryItems = refs.container.children;
+
 const imageFinder = new ImageFinder();
 const notification = new MyNotification();
 
