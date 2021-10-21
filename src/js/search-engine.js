@@ -13,6 +13,8 @@ const notification = new MyNotification()
 
 refs.form.addEventListener('input', debounce(onSearch, 1000))
 refs.button.addEventListener('click', onLoadMore)
+refs.button.addEventListener('click', scrollGallery)
+
 
 function onSearch(e) {
 console.log(galleryItem.length)
@@ -49,7 +51,7 @@ function markup(keyword) {
 function onLoadMore(e) {
   
     imageFinder.fetchImages().then(markup)
-scrollGallery()
+
 
     
 }
