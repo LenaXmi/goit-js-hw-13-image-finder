@@ -14,12 +14,16 @@ refs.form.addEventListener('input', debounce(onSearch, 1000));
 refs.button.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
-  imageFinder.query = e.target.value;
-  imageFinder.resetPage();
+    imageFinder.query = e.target.value;
+     clearImageCard()
+  
+   
 
-  if (imageFinder.query !== '') {
+    if (imageFinder.query !== '') {
+        imageFinder.resetPage();
     renderGallery();
-  } else {
+    }
+    else {
     refs.button.style.display = 'none';
     clearImageCard();
     notification.myInfo();
@@ -32,7 +36,8 @@ function renderGallery() {
     .then(hits => {
       markup(hits);
       refs.button.style.display = 'block';
-      if (galleryItems.length === 0) {
+        if (galleryItems.length === 0) {
+     
         refs.button.style.display = 'none';
         notification.myNotice();
       }
