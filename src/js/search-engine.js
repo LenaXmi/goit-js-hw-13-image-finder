@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 import MyNotification from './notification.js';
 
 const refs = getRefs();
-
+const galleryItems = refs.list.children;
 const imageFinder = new ImageFinder();
 const notification = new MyNotification();
 
@@ -18,18 +18,28 @@ function onSearch(e) {
   imageFinder.resetPage();
 
   if (imageFinder.query !== '') {
-    imageFinder
-      .fetchImages()
-      .then(markup)
-      .catch(error => {
-        notification.myError();
-      });
-    refs.button.style.display = 'block';
+    renderGallery();
   } else {
-    clearImageCard();
     refs.button.style.display = 'none';
+    clearImageCard();
     notification.myInfo();
   }
+}
+
+function renderGallery() {
+  imageFinder
+    .fetchImages()
+    .then(hits => {
+      markup(hits);
+      refs.button.style.display = 'block';
+      if (galleryItems.length === 0) {
+        refs.button.style.display = 'none';
+        notification.myNotice();
+      }
+    })
+    .catch(error => {
+      notification.myError();
+    });
 }
 
 function markup(keyword) {
@@ -51,5 +61,5 @@ function scrollGallery() {
 }
 
 function clearImageCard() {
-  refs.container.innerHTML = '';
+  refs.list.innerHTML = '';
 }
